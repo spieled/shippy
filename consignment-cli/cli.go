@@ -45,4 +45,11 @@ func main() {
         log.Fatalf("Can not create consignment with remote invoke. %v", err)
     }
     log.Printf("Created: %t", r.Created)
+    ret, err := client.GetConsignments(context.Background(), &pb.GetRequest{})
+    if err != nil {
+        log.Fatalf("Can not get consignments.%v", err)
+    }
+    for _, consignment := range ret.Consignments {
+        log.Printf("Consignment %v", consignment)
+    }
 }
